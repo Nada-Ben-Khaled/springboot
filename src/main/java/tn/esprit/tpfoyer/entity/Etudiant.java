@@ -3,6 +3,8 @@ package tn.esprit.tpfoyer.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -19,4 +21,9 @@ public class Etudiant {
     private Long cin;
     private String ecole;
     private java.util.Date dateNaissance;
+
+
+    @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Set<Reservation> reservations;
 }
